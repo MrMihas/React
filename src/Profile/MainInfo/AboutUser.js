@@ -8,19 +8,20 @@ class AboutUser extends React.Component {
         this.state = {
             userIcon: "https://avatarko.ru/img/kartinka/1/avatarko_anonim.jpg",
             userName: "Генадій Сергійович",
-            more: "hidden"
-
-        }
-        this.moreInfo = this.moreInfo.bind(this);
+            showMore: false
+        };
+        // this.moreInfo = this.moreInfo.bind(this);
     }
 
-    // moreInfo = () => {
+    moreInfo = () => {
+        this.setState(prevState =>({
+            showMore : !prevState.showMore
+        }));
+    }
+    // or with bind
+    // moreInfo (){
     //     this.setState({more: "show"});
     // }
-    // or with bind
-    moreInfo (){
-        this.setState({more: "show"});
-    }
 
     render() {
         return (
@@ -34,7 +35,7 @@ class AboutUser extends React.Component {
                         <h4> {this.state.userName}</h4>
 
                         <button onClick={this.moreInfo}>more info</button>
-                        <div className={this.state.more}>
+                        <div className={this.state.showMore ? 'show' : 'hidden'}>
                             <div className={s.otherInfo}>
                                 <p>Lorem ipsum dolor.</p>
                                 <p>Lorem ipsum dolor.</p>
