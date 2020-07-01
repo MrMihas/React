@@ -1,17 +1,8 @@
 import React from "react";
 import Post from "../Post/Post";
+import news from './PostsData';
 
 
-const news = [
-    {
-        message: "hello",
-        likes: 12
-    },
-    {
-        message: "world",
-        likes: 122
-    }
-]
 
 class MyPosts extends React.Component {
     render() {
