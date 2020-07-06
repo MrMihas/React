@@ -1,27 +1,39 @@
 import React from "react";
 import s from "./MainInfo.module.css";
-import Post from "../MyPosts/MyPosts";
+import Post from "../Post/Post";
 import AboutUser from "./AboutUser";
 
-class MainInfo extends React.Component {
+const MainInfo = (props) => {
 
-    render() {
-        return (
-            <main>
+    let newPostElem;
+    newPostElem = React.createRef();
 
-                <section>
-                    <div className={s.headPhoto}>
-                        <img
-                            src='https://s32677.pcdn.co/wp-content/uploads/2020/03/bic_coronavirus_panic.jpg.optimal.jpg'/>
-                    </div>
+    let addPost = () => {
+        props.addPost();
+    };
+    let onChangePost = () => {
+        let text = newPostElem.current.value;
+        props.updateNewPostText(text);
+    };
 
-                    <AboutUser/>
+    return (
+        <main>
 
-                </section>
-                <Post/>
-            </main>
-        );
-    }
+            <section>
+                <div className={s.headPhoto}>
+                    <img src='https://s32677.pcdn.co/wp-content/uploads/2020/03/bic_coronavirus_panic.jpg.optimal.jpg' />
+                </div>
+                <AboutUser />
+                <h3>My Posts</h3>
+
+                <div>
+                    <textarea onChange={onChangePost} ref={newPostElem} />
+                    <button onClick={addPost}>Send</button>
+                </div>
+            </section>
+            <Post posts={props.profilePage.posts} addPost={props.addPost} />
+        </main>
+    );
 
 }
 

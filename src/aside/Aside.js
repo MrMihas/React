@@ -1,28 +1,18 @@
 import React from "react";
 import myClass from "./Aside.module.css";
 import Items from "./Menu/Menu";
+import Friends from "./Friends/Friends";
 
 
-const items = [
-    {
-        item: "Profile",
-        link: "/profile"
-    },
-    {
-        item: "Dialogs",
-        link: "/dialogs"
-    }
-]
 
-class Aside extends React.Component {
 
-    render() {
+const Aside =(props)=> {
         return (
             <aside className={myClass.aside}>
-                <Items elem={items}/>
+                <Items menuItem={props.state.menuItem} />
+                <Friends friends={props.state.friends}/>
             </aside>
         )
-    }
 
 }
 

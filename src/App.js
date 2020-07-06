@@ -5,47 +5,30 @@ import Aside from "./aside/Aside";
 import Header from "./Header/Header.jsx";
 import Dialogs from "./Messages/Dialogs";
 
-
-import {BrowserRouter, Route} from 'react-router-dom';
 import MainInfo from "./Profile/MainInfo/MainInfo";
+import {Route} from "react-router-dom";
 
 
-class App extends React.Component {
-    render() {
-        return (
-            <BrowserRouter>
-                <div className="app-wrapper">
-                    <Header/>
-                    <Aside/>
-                    <div className="app-wrapper-content">
-                        <Route path="/profile" component={MainInfo}/>
-                        <Route path="/dialogs" component={Dialogs}/>
 
-                    </div>
-                </div>
-            </BrowserRouter>
-        )
-    }
+const App = (props) => {
+
+    return (
+        <div className="app-wrapper">
+            <Header />
+            <Aside state={props.state.sidebar} />
+            <div className="app-wrapper-content">
+                <Route path="/profile" render={
+                    () => <MainInfo profilePage={props.state.profilePage}
+                        addPost={props.addPost}
+                        updateNewPostText={props.updateNewPostText} />} />
+                <Route path="/dialogs" render={
+                    () => <Dialogs state={props.state.dialogPage} />} />
+
+                {/* render faster than component*/}
+            </div>
+        </div>
+    )
+
 }
-
-// function App() {
-//     return (
-//     <div className="app-wrapper">
-//         <Header/>
-//         <Aside/>
-//         <Content/>
-//     </div>
-// );
-// }
-
-// const Header = () => {
-//   return (
-//     <div>
-//       <a href="javascript"> link</a>
-//       <a> link</a>
-//       <a> link</a>
-//     </div>
-//   );
-// }
 
 export default App;
