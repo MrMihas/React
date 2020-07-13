@@ -7,7 +7,7 @@ const UserItem = (props) => {
         const dialogElement = props.dialogs.map(dialog => {
             return (
                 <div className={s.dialog}>
-                    <NavLink to='/dialogs/1' data-id={dialog.id}> {dialog.name} </NavLink>
+                    <NavLink to={'/dialogs/' + dialog.id}  data-id={dialog.id}> {dialog.name} </NavLink>
                 </div>
             )
         })

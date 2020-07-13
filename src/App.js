@@ -14,20 +14,19 @@ const App = (props) => {
 
     return (
         <div className="app-wrapper">
-            <Header />
-            <Aside state={props.state.sidebar} />
-            <div className="app-wrapper-content">
-                <Route path="/profile" render={
-                    () => <MainInfo profilePage={props.state.profilePage}
-                        addPost={props.addPost}
-                        updateNewPostText={props.updateNewPostText} />} />
-                <Route path="/dialogs" render={
-                    () => <Dialogs state={props.state.dialogPage} />} />
+        <Header />
+        <Aside state={props.state.sidebar} />
+        <div className="app-wrapper-content">
+        <Route path="/profile" render={
+            () => <MainInfo profilePage={props.state.profilePage}
+            dispatch={props.dispatch} />} />
+            <Route path="/dialogs" render={
+                () => <Dialogs state={props.state.dialogPage} />} />
 
-                {/* render faster than component*/}
+            {/* render faster than component*/}
             </div>
-        </div>
-    )
+            </div>
+            )
 
 }
 
