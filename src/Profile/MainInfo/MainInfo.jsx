@@ -2,6 +2,7 @@ import React from "react";
 import s from "./MainInfo.module.css";
 import Post from "../Post/Post";
 import AboutUser from "./AboutUser";
+import {addPostCreator, updateNewPostTextCreator} from "../../redux/State";
 
 const MainInfo = (props) => {
 
@@ -9,11 +10,11 @@ const MainInfo = (props) => {
     newPostElem = React.createRef();
 
     let addPost = () => {
-        props.dispatch({type: 'ADD-POST'});
+        props.dispatch(addPostCreator());
     };
     let onChangePost = () => {
         let text = newPostElem.current.value;
-        props.dispatch({type:  'UPDATE-NEW-POST-TEXT', newText:text});
+        props.dispatch(updateNewPostTextCreator(text));
     };
 
     return (

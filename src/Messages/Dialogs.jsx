@@ -2,21 +2,39 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import UserItem from "./Dialog/UserItem";
 import MessageItem from "./Message/MessageItem";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../redux/State";
 
 
 const Dialogs = (props) => {
 
-        return (
-            <section className={s.dialogs}>
-                <div className={s.dialogsItems}>
-                    <UserItem dialogs={props.state.dialogs} />
-                </div>
-                <div className={s.messages__item}>
-                    <MessageItem messages={props.state.messages}/>
-                </div>
+    let state = props.store.getState().dialogPage;
 
-            </section>
-        );
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageCreator());
+    }
+
+    let onNewMessageChange = (e) => {
+        let body = e.target.value;
+       props.store.dispatch(updateNewMessageBodyCreator(body));
+        console.log(body);
+    }
+
+    return (
+        <section className={s.dialogs}>
+            <div className={s.dialogsItems}>
+                <UserItem dialogs={state.dialogs}/>
+            </div>
+            <div className={s.messages__item}>
+                <MessageItem messages={state.messages}/>
+            </div>
+            <div className="field">
+                <textarea placeholder="enter message"
+                          onChange={onNewMessageChange}
+                          value={state.newMessageText}></textarea>
+                <button onClick={onSendMessageClick}> Send</button>
+            </div>
+        </section>
+    );
 
 }
 
