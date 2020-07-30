@@ -1,8 +1,7 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import {sidebarsReducer} from "./sidebar-reducer";
 
-const UPDATE_NEW_TEXT_BODY = 'UPDATE-NEW-TEXT-BODY';
-const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let store = {
     _state: {
@@ -91,37 +90,15 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: 7,
-                message: this._state.profilePage.newPostText,
-                likes: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber(this._state);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogPage = dialogsReducer(this._state.dialogPage, action);
+        this._state.sidebar = sidebarsReducer(this._state.sidebar, action);
 
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_TEXT_BODY) {
-            this._state.dialogPage.newMessageText = action.body;
-            this._callSubscriber(this._state);
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.dialogPage.newMessageText;
-            this._state.dialogPage.newMessageText = '';
-            this._state.dialogPage.messages.push({id: 7, message: body});
-            this._callSubscriber(this._state);
-        }
+        this._callSubscriber(this._state);
     },
 }
 
-export const addPostCreator = () => ({type: ADD_POST})
-export const updateNewPostTextCreator = (text) => {
-    return {type: UPDATE_NEW_POST_TEXT, newText: text}
-}
 
 
-export const sendMessageCreator = () => ({type: SEND_MESSAGE})
-export const updateNewMessageBodyCreator = (body) => ({type: UPDATE_NEW_TEXT_BODY, body:body })
+
 export default store;

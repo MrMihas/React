@@ -2,7 +2,8 @@ import React from "react";
 import s from "./MainInfo.module.css";
 import Post from "../Post/Post";
 import AboutUser from "./AboutUser";
-import {addPostCreator, updateNewPostTextCreator} from "../../redux/State";
+import {addPostCreator, updateNewPostTextCreator} from "../../redux/profile-reducer";
+
 
 const MainInfo = (props) => {
 
