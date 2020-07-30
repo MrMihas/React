@@ -105,12 +105,12 @@ let store = {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
         } else if (action.type === UPDATE_NEW_TEXT_BODY) {
-            this._state.dialogPage.newMessageText = action.messageText;
+            this._state.dialogPage.newMessageText = action.body;
             this._callSubscriber(this._state);
         } else if (action.type === SEND_MESSAGE) {
             let body = this._state.dialogPage.newMessageText;
             this._state.dialogPage.newMessageText = '';
-            this._state.dialogPage.messages.push({id: 10, message: body});
+            this._state.dialogPage.messages.push({id: 7, message: body});
             this._callSubscriber(this._state);
         }
     },
@@ -123,7 +123,5 @@ export const updateNewPostTextCreator = (text) => {
 
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE})
-export const updateNewMessageBodyCreator = (body) => {
-    return {type: UPDATE_NEW_TEXT_BODY, body:body }
-}
+export const updateNewMessageBodyCreator = (body) => ({type: UPDATE_NEW_TEXT_BODY, body:body })
 export default store;

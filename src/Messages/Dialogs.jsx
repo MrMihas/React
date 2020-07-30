@@ -11,6 +11,7 @@ const Dialogs = (props) => {
 
     let onSendMessageClick = () => {
         props.store.dispatch(sendMessageCreator());
+		console.log( props.store.dispatch(sendMessageCreator()));
     }
 
     let onNewMessageChange = (e) => {
