@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 // import {addPost, subscribe, updateNewPostText} from "./redux/State";
-import store from "./redux/State";
+import store from "./redux/redux-store";
 import * as serviceWorker from './serviceWorker';
 
 const rerenderEntareTree = (state) => {
@@ -15,6 +15,9 @@ const rerenderEntareTree = (state) => {
 }
 rerenderEntareTree(store.getState());
 
-store.subscribe(rerenderEntareTree);
+store.subscribe(()=>{
+    let state = store.getState();
+    rerenderEntareTree(state)
+});
 
 serviceWorker.unregister();

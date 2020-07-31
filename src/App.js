@@ -4,7 +4,6 @@ import './App.css';
 import Aside from "./aside/Aside";
 import Header from "./Header/Header.jsx";
 import Dialogs from "./Messages/Dialogs";
-
 import MainInfo from "./Profile/MainInfo/MainInfo";
 import {Route} from "react-router-dom";
 
